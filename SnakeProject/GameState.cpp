@@ -20,7 +20,10 @@ int main()
 	snakeBody.setStartPosition(sf::Vector2f(400, 400));
 
 	//äpple
-	Apple apple(sf::Vector2f(10, 10));
+	sf::Texture appleTexture;
+	appleTexture.loadFromFile("ApplePic.png");
+	Apple apple(appleTexture, sf::Vector2f(20,20));
+	
 
 
 	while (window.isOpen())

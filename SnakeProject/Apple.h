@@ -7,7 +7,7 @@ class Apple
 {
 
 public:
-	Apple(sf::Vector2f size);
+	Apple(sf::Texture &appleTexture, sf::Vector2f size);
 	void RandomPosition();
 	void draw(sf::RenderWindow & window);
 
@@ -18,7 +18,7 @@ public:
 
 private:
 	sf::RectangleShape apple;
-	//sf::CircleShape apple;
+	
 	
 
 

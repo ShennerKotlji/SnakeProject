@@ -1,22 +1,18 @@
 #include "Apple.h"
 
-Apple::Apple(sf::Vector2f size)
+Apple::Apple(sf::Texture &appleTexture, sf::Vector2f size)
 {
 	apple.setSize(size);
-	apple.setFillColor(sf::Color::Red);
-	/*apple.setRadius(5);
-	apple.setOutlineColor(sf::Color::Red);
-	apple.setOutlineThickness(1);*/
+	apple.setPosition(200.0f, 200.0f);
+	apple.setTexture(&appleTexture);
 }
 
 void Apple::RandomPosition()
 {
-	//har för tillfället (400,400)
-	int x = rand() % 401;
-	int y = rand() % 401;
+	int x = rand() % 801;
+	int y = rand() % 801;;
 
 	apple.setPosition(sf::Vector2f(x, y));
-
 }
 
 void Apple::draw(sf::RenderWindow & window)
