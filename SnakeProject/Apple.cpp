@@ -9,15 +9,15 @@ Apple::Apple(sf::Texture &appleTexture, sf::Vector2f size)
 
 void Apple::RandomPosition()
 {
-	int x = rand() % 801;
-	int y = rand() % 801;;
+	int x = rand() % 450;
+	int y = rand() % 450;
 
 	apple.setPosition(sf::Vector2f(x, y));
 }
 
-void Apple::draw(sf::RenderWindow & window)
+void Apple::draw(sf::RenderTarget & target, sf::RenderStates state) const
 {
-	window.draw(apple);
+	target.draw(apple);
 }
 
 sf::FloatRect Apple::getGlobalBounds()

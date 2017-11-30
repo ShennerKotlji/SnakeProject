@@ -2,31 +2,32 @@
 #include <SFML\Graphics.hpp>
 #include "Apple.h"
 
-class Snake
+class Snake : public sf::Drawable
 {
 
 public:
-	Snake(sf::Vector2f defaultSize);
-
+	Snake();
 	~Snake();
 
-	//void Update(float dt);
-	void Draw(sf::RenderWindow &window);
+	void Update(float dt);
+	void draw(sf::RenderTarget & target, sf::RenderStates state) const;
 	void move(sf::Vector2f direction);
 	void setStartPosition(sf::Vector2f startPos);
 
-//	void newSize();
+	void newSize(float tailLength);
 
 	bool EatingApple(Apple apple);
 
 private:
+	//sf::RectangleShape snakeBody;
+	void Expand();
+	float tailLength;
+	float tailWidth;
+	sf::RectangleShape *bodyParts;
+	int count;
+	int capacity;
 
-	sf::RectangleShape snakeBody;
-	int speed;
 	
-
-
-
-
+	
 
 };

@@ -3,13 +3,13 @@
 #include <SFML\Graphics.hpp>
 
 
-class Apple
+class Apple : public sf::Drawable
 {
 
 public:
 	Apple(sf::Texture &appleTexture, sf::Vector2f size);
 	void RandomPosition();
-	void draw(sf::RenderWindow & window);
+	void draw(sf::RenderTarget & target, sf::RenderStates state) const;
 
 	sf::FloatRect getGlobalBounds();
 	
