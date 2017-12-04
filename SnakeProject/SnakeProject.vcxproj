@@ -121,6 +121,7 @@
   <ItemGroup>
     <ClCompile Include="Apple.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="Snake.cpp" />
   </ItemGroup>
   <ItemGroup>

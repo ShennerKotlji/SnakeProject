@@ -9,13 +9,14 @@ public:
 	Snake();
 	~Snake();
 
-	void Update(float dt);
+	
 	void draw(sf::RenderTarget & target, sf::RenderStates state) const;
-	void move(sf::Vector2f direction);
-	void setStartPosition(sf::Vector2f startPos);
+	void move(sf::Vector2f direction, float currentTime);
+	//void setStartPosition(sf::Vector2f startPos);
 
 	void newSize(float tailLength);
-
+	
+	sf::FloatRect getGlobalBounds();
 	bool EatingApple(Apple apple);
 
 private:
@@ -26,6 +27,7 @@ private:
 	sf::RectangleShape *bodyParts;
 	int count;
 	int capacity;
+	float moveTimer;
 
 	
 	
