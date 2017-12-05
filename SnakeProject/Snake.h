@@ -15,7 +15,8 @@ public:
 	//void setStartPosition(sf::Vector2f startPos);
 
 	void newSize(float tailLength);
-	
+	bool collision() const;
+	bool wallCollision();
 	sf::FloatRect getGlobalBounds();
 	bool EatingApple(Apple apple);
 

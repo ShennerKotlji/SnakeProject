@@ -9,8 +9,8 @@ Apple::Apple(sf::Texture &appleTexture, sf::Vector2f size)
 
 void Apple::RandomPosition()
 {
-	int x = rand() % 450;
-	int y = rand() % 450;
+	int x = rand() % 500;
+	int y = rand() % 500;
 
 	apple.setPosition(sf::Vector2f(x, y));
 }

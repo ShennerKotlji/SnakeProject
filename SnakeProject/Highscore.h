@@ -1,10 +1,11 @@
 #pragma once
 #define HIGHSCORE_H
+#include <SFML\Graphics.hpp>
 
-class Highscore
+class Highscore : public sf::Drawable
 {
 public:
-	Highscore(sf::Font &textType);
+	Highscore();
 	~Highscore();
 
 	void addScore(int result);
@@ -23,6 +24,7 @@ private:
 	const int TopScores = 10;
 	int count;
 	sf::Text scoreTxt;
+	sf::Font Candara;
 
 
 };

@@ -4,12 +4,15 @@
 #include <sstream>
 
 
-Highscore::Highscore(sf::Font &textType)
+Highscore::Highscore()
 {
+	this->score = 0;
+	Candara.loadFromFile("Candara.ttf");
 	scoreTxt.setCharacterSize(30);
 	scoreTxt.setPosition(10, 10);
-	scoreTxt.setFont(textType);
-	scoreTxt.setString(ToString());
+	scoreTxt.setFont(Candara);
+	scoreTxt.setFillColor(sf::Color::White);
+	
 	
 
 	for (int i = 0; i < 10; i++) {
@@ -37,7 +40,6 @@ void Highscore::addScore(int result)
 				i = -1;
 			}
 		}
-		
 	}
 
 	else 
@@ -52,7 +54,9 @@ void Highscore::addScore(int result)
 
 void Highscore::setScore(int points)
 {
-	this->score = this->score + points;
+	score = score + points;
+
+	scoreTxt.setString(ToString());
 }
 
 void Highscore::GameOver()
@@ -83,6 +87,7 @@ void Highscore::sortAll()
 void Highscore::draw(sf::RenderTarget & target, sf::RenderStates state) const
 {
 	target.draw(scoreTxt);
+
 }
 
 
@@ -99,6 +104,7 @@ int Highscore::getScore() const
 {
 	return score;
 }
+
 
 
 

@@ -1,4 +1,5 @@
 #include "Snake.h"
+#include <iostream>
 
 
 Snake::Snake()
@@ -9,13 +10,12 @@ Snake::Snake()
 	this->tailLength = 10.0f;
 	this->tailWidth = 10.0f;
 	this->count = 3;
-	for (int i = 0; i < count; i++) {
-
+	for (int i = 0; i < count; i++)
+	{
 		bodyParts[i].setSize({ tailLength,tailWidth });
-		bodyParts[i].setFillColor(sf::Color::White);
+		bodyParts[i].setFillColor(sf::Color::Blue);
 		bodyParts[i].setPosition({ 250 + (i*(tailWidth + 1)),250 });
 	}
-
 }
 
 Snake::~Snake()
@@ -33,32 +33,34 @@ void Snake::draw(sf::RenderTarget & target, sf::RenderStates state) const
 void Snake::move(sf::Vector2f direction, float currentTime)
 {
 	if (moveTimer <= 0) {
+
+
 		auto temp = bodyParts[0].getPosition();
 		/*bodyParts[0].move(direction);*/
-		bodyParts[0].move(sf::Vector2f(direction.x * 12, direction.y * 12));
-		for (int i = 1; i < count; i++) {
 
-			auto temp2 = bodyParts[i].getPosition();
-			bodyParts[i].setPosition(temp);
-			temp = temp2;
+		bodyParts[0].move(sf::Vector2f(direction.x * 12, direction.y * 12));
+		if (bodyParts[0].getPosition() != temp) {
+
+			for (int i = 1; i < count; i++)
+			{
+
+				auto temp2 = bodyParts[i].getPosition();
+				bodyParts[i].setPosition(temp);
+				temp = temp2;
+
+			}
+
 
 		}
+
 
 		moveTimer = 0.10f;
 	}
 	else {
 
 		moveTimer = moveTimer - currentTime;
-
 	}
-
 }
-
-//void Snake::setStartPosition(sf::Vector2f startPos)
-//{
-//	//snakeBody.setPosition(startPos);
-//	/*bodyParts[0].setPosition(startPos);*/
-//}
 
 void Snake::newSize(float tailIncrement)
 {
@@ -71,16 +73,50 @@ void Snake::newSize(float tailIncrement)
 	}
 
 	bodyParts[count].setSize({ tailLength,tailWidth });
-	bodyParts[count].setFillColor(sf::Color::White);
+	bodyParts[count].setFillColor(sf::Color::Blue);
 	bodyParts[count].setPosition(bodyParts[count - 1].getPosition());
 	count++;
-
 }
 
-//sf::FloatRect Snake::getGlobalBounds()
-//{
-//	return bodyParts[0].getGlobalBounds();
-//}
+bool Snake::collision() const
+{
+	bool crasch = false;
+	for (int i = 1; i < count; i++) {
+
+		if (bodyParts[0].getGlobalBounds().intersects(bodyParts[i].getGlobalBounds())) {
+
+			crasch = true;
+		}
+	}
+	return crasch;
+}
+
+bool Snake::wallCollision()
+{
+
+	sf::Vector2f position(bodyParts[0].getPosition());
+	float x = position.x;
+	std::cout << "x: " << x << std::endl;
+
+	float y = position.y;
+	std::cout << "y: " << y << std::endl;
+	bool outOfWindow = false;
+	if (500 < x || 500 < y)
+	{
+		outOfWindow = true;
+	}
+	if (x < 0 || y < 0) {
+
+		outOfWindow = true;
+	}
+
+	return outOfWindow;
+}
+
+sf::FloatRect Snake::getGlobalBounds()
+{
+	return bodyParts[0].getGlobalBounds();
+}
 
 bool Snake::EatingApple(Apple apple)
 {

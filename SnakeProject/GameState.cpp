@@ -5,6 +5,7 @@
 #include "Snake.h"
 #include "Apple.h"
 #include "Highscore.h"
+#include <string>
 
 int main()
 {
@@ -12,6 +13,12 @@ int main()
 	srand(static_cast<unsigned int>(time(0)));
 
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Shenners Snake Game!");
+	/*sf::Texture txt;
+	txt.loadFromFile("background1.jpg");
+	sf::Sprite background(txt);*/
+	
+	
+	
 	/*sf::RectangleShape line(sf::Vector2f(100,5));
 	line.setFillColor(sf::Color::White);*/
 
@@ -28,14 +35,10 @@ int main()
 	//riktning
 	sf::Vector2f snakeDir = { 0,0 };
 	sf::Clock clock;
+	std::string disableReverseMove;
 
-	//highscore text
-	sf::Font Candara;
-	Candara.loadFromFile("Candara.ttf");
-	Highscore scoreSheet(Candara);
-
-
-
+	//highscore
+	Highscore scoreSheet;
 
 	while (window.isOpen())
 	{
@@ -54,28 +57,47 @@ int main()
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			{
-				snakeDir = { -1, 0 };
-				/*snakeBody.move({ -12, 0 },0);*/
+				if (disableReverseMove != "Right") {
+
+					disableReverseMove = "left";
+					snakeDir = { -1, 0 };
+
+				}
 			}
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 			{
+				if (disableReverseMove != "left") {
+
+				disableReverseMove = "Right";
 				snakeDir = { 1, 0 };
-				/*snakeBody.move({ 12, 0 },0);*/
+
+				}
 			}
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			{
-				snakeDir = { 0, 1};
-				/*snakeBody.move({ 0, 12 },0);*/
+				if (disableReverseMove != "Up") 
+				{
+				
+				disableReverseMove = "Down";
+				snakeDir = { 0, 1 };
+
+				}
 			}
+
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 			{
-				snakeDir = { 0, -1};
-			/*	snakeBody.move({ 0, -12 }, 0);*/
-			}
+				if (disableReverseMove != "Down") 
+				{
+				
+					disableReverseMove = "Up";
+					snakeDir = { 0, -1};
 
+				}
+			}
+					
 		}
 
 		if (snakeBody.EatingApple(apple))
@@ -83,22 +105,28 @@ int main()
 			apple.RandomPosition();
 			snakeBody.newSize(10);
 			scoreSheet.setScore(1);
+			scoreSheet.ToString();
 		}
 
-		
+		if (snakeBody.wallCollision() == true) {
+
+			system("pause");
+		}
+		if (snakeBody.collision() == true)
+		{
+			std::cin.get();
+		}
+
 		snakeBody.move(snakeDir, currentTime);
 		window.clear();
+	/*	window.draw(background);*/
 		window.draw(scoreSheet);
 		window.draw(snakeBody);
 		window.draw(apple);
 		window.display();
 
 
-		/*switch (event.type)
-		{
-		case sf::Event::Resized:
-		std::cout << "New window width: " << event.size.width << "New window height: " << event.size.height << std::endl;
-		break;*/
+	
 
 	}
 	return 0;
