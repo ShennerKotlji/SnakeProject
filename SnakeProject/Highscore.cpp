@@ -2,18 +2,20 @@
 #include "Snake.h"
 #include <string>
 #include <sstream>
+#include <fstream>
 
 
 Highscore::Highscore()
 {
 	this->score = 0;
+	this->count = 0;
 	Candara.loadFromFile("Candara.ttf");
 	scoreTxt.setCharacterSize(30);
 	scoreTxt.setPosition(10, 10);
 	scoreTxt.setFont(Candara);
 	scoreTxt.setFillColor(sf::Color::White);
-	
-	
+
+
 
 	for (int i = 0; i < 10; i++) {
 
@@ -26,7 +28,7 @@ Highscore::~Highscore()
 {
 }
 
-void Highscore::addScore(int result)
+void Highscore::addScore()
 {
 
 	if (count == TopScores)
@@ -34,19 +36,19 @@ void Highscore::addScore(int result)
 
 		for (int i = count - 1; i >= 0; i--)
 		{
-			if (scoreArr[i] < result)
+			if (scoreArr[i] < getScore())
 			{
-				scoreArr[i] = result;
+				scoreArr[i] = getScore();
 				i = -1;
 			}
 		}
 	}
 
-	else 
+	else
 	{
-		scoreArr[count] = result;
-		count;;
-		
+		scoreArr[count] = getScore();
+		count++;
+
 	}
 
 	sortAll();
@@ -73,7 +75,7 @@ void Highscore::sortAll()
 		sorted = true;
 		for (int i = 0; i < count - 1; i++) {
 
-			if (scoreArr[i] > scoreArr[i + 1]) {
+			if (scoreArr[i] < scoreArr[i + 1]) {
 
 				std::swap(scoreArr[i], scoreArr[i + 1]);
 				sorted = false;
@@ -90,7 +92,40 @@ void Highscore::draw(sf::RenderTarget & target, sf::RenderStates state) const
 
 }
 
+void Highscore::SaveToFile()
+{
+	addScore();
+	std::ofstream fout("highscore.txt");
+	fout << count << std::endl;
 
+	for (int i = 0; i < count; i++) {
+
+		fout << scoreArr[i] << std::endl;
+	}
+
+}
+
+void Highscore::ReadFromFile()
+{
+
+	Highscore ToAdd;
+
+	std::ifstream fileIn("highscore.txt");
+	if (fileIn.is_open()) 
+	{
+		fileIn >> count;
+		fileIn.ignore();
+		for (int i = 0; i < count; i++)
+		{
+			int points;
+			fileIn >> points;
+			fileIn.ignore();
+			scoreArr[i] = points;
+			
+		}
+
+	}
+}
 
 std::string Highscore::ToString() const
 {

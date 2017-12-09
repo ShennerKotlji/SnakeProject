@@ -8,11 +8,13 @@ public:
 	Highscore();
 	~Highscore();
 
-	void addScore(int result);
+	void addScore();
 	void setScore(int points);
 	void GameOver();
 	void sortAll();
 	void draw(sf::RenderTarget & target, sf::RenderStates state) const;
+	void SaveToFile();
+	void ReadFromFile();
 
 	std::string ToString() const;
 	int getScore() const;

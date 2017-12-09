@@ -12,7 +12,6 @@ public:
 	
 	void draw(sf::RenderTarget & target, sf::RenderStates state) const;
 	void move(sf::Vector2f direction, float currentTime);
-	//void setStartPosition(sf::Vector2f startPos);
 
 	void newSize(float tailLength);
 	bool collision() const;
@@ -21,7 +20,7 @@ public:
 	bool EatingApple(Apple apple);
 
 private:
-	//sf::RectangleShape snakeBody;
+
 	void Expand();
 	float tailLength;
 	float tailWidth;

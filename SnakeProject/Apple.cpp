@@ -1,16 +1,22 @@
 #include "Apple.h"
 
-Apple::Apple(sf::Texture &appleTexture, sf::Vector2f size)
+
+Apple::Apple()
 {
-	apple.setSize(size);
+	texture.loadFromFile("ApplePic.png");
+	apple.setSize({ 20,20 });
 	apple.setPosition(200.0f, 200.0f);
-	apple.setTexture(&appleTexture);
+	apple.setTexture(&texture);
+}
+
+Apple::~Apple()
+{
 }
 
 void Apple::RandomPosition()
 {
-	int x = rand() % 500;
-	int y = rand() % 500;
+	int x = rand() % 348 + 70;
+	int y = rand() % 241 + 59;
 
 	apple.setPosition(sf::Vector2f(x, y));
 }

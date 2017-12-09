@@ -7,17 +7,17 @@ class Apple : public sf::Drawable
 {
 
 public:
-	Apple(sf::Texture &appleTexture, sf::Vector2f size);
+	Apple();
+	~Apple();
 	void RandomPosition();
 	void draw(sf::RenderTarget & target, sf::RenderStates state) const;
 
 	sf::FloatRect getGlobalBounds();
 	
 
-
-
 private:
 	sf::RectangleShape apple;
+	sf::Texture texture;
 	
 	
 

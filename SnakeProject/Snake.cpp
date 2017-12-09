@@ -49,8 +49,6 @@ void Snake::move(sf::Vector2f direction, float currentTime)
 				temp = temp2;
 
 			}
-
-
 		}
 
 
@@ -65,8 +63,7 @@ void Snake::move(sf::Vector2f direction, float currentTime)
 void Snake::newSize(float tailIncrement)
 {
 
-	/*tailLength = tailLength + tailIncrement;
-	snakeBody.setSize({ tailLength,10.0f });*/
+	
 	if (count == capacity) {
 
 		Expand();
@@ -96,10 +93,10 @@ bool Snake::wallCollision()
 
 	sf::Vector2f position(bodyParts[0].getPosition());
 	float x = position.x;
-	std::cout << "x: " << x << std::endl;
+	//std::cout << "x: " << x << std::endl;
 
 	float y = position.y;
-	std::cout << "y: " << y << std::endl;
+	//std::cout << "y: " << y << std::endl;
 	bool outOfWindow = false;
 	if (500 < x || 500 < y)
 	{
