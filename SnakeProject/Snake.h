@@ -13,7 +13,7 @@ public:
 	void draw(sf::RenderTarget & target, sf::RenderStates state) const;
 	void move(sf::Vector2f direction, float currentTime);
 
-	void newSize(float tailLength);
+	void newSize();
 	bool collision() const;
 	bool wallCollision();
 	sf::FloatRect getGlobalBounds();

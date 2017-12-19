@@ -5,10 +5,11 @@
 enum class GameStates
 {
 
-	GAME_OVER = 0,
+	EXIT = 0,
 	START_GAME = 1,
 	SHOW_HIGHSCORE = 2,
-	KEEPRUNNING = 3
+	KEEPRUNNING = 3,
+	SHOW_MENU = 4
 
 };
 class InterfaceState : public sf::Drawable
@@ -16,11 +17,7 @@ class InterfaceState : public sf::Drawable
 public:
 
 	virtual ~InterfaceState() {}
-
 	virtual GameStates Update(float dt,sf::RenderWindow &Window) = 0;
 	
-
-
-
 
 };

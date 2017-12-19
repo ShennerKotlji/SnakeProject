@@ -8,14 +8,13 @@
 #include "Game.h"
 #include "Menu.h"
 #include <string>
+#include "HighscoreState.h"
 
 int main()
 {
 
 	srand(static_cast<unsigned int>(time(0)));
 	
-
-
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Shenners Snake Game!");
 	sf::Texture txt;
 	txt.loadFromFile("background1.jpg");
@@ -23,8 +22,6 @@ int main()
 
 	sf::Clock clock;
 	InterfaceState* Istate = new Menu();
-	
-	/*InterfaceState* Istate = new Game();*/
 
 	while (window.isOpen())
 	{
@@ -39,14 +36,15 @@ int main()
 			float xpos = sf::Mouse::getPosition(window).x;
 			float ypos = sf::Mouse::getPosition(window).y;
 
-			std::cout << "x: " << xpos << std::endl;
-			std::cout << "y: " << ypos << std::endl;
+		/*	std::cout << "x: " << xpos << std::endl;
+			std::cout << "y: " << ypos << std::endl;*/
 
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
 			}
 		}
+		Highscore a;
 
 		GameStates State = Istate->Update(currentTime,window);
 		window.clear();
@@ -55,9 +53,9 @@ int main()
 		window.display();
 
 
-		switch (State) {
-
-		case GameStates::GAME_OVER:
+		switch (State)
+		{
+		case GameStates::EXIT:
 			window.close();
 			break;
 		case GameStates::START_GAME:
@@ -67,9 +65,13 @@ int main()
 			break;
 		case GameStates::SHOW_HIGHSCORE:
 			delete Istate;
-			//	Istate = new Highscore();
+			Istate = new HighscoreState();
 			break;
-
+		case GameStates::SHOW_MENU:
+			delete Istate;
+			window.clear();
+			Istate = new Menu();
+			break;
 
 		}
 	}

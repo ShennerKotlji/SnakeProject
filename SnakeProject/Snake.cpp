@@ -36,8 +36,7 @@ void Snake::move(sf::Vector2f direction, float currentTime)
 
 
 		auto temp = bodyParts[0].getPosition();
-		/*bodyParts[0].move(direction);*/
-
+		
 		bodyParts[0].move(sf::Vector2f(direction.x * 12, direction.y * 12));
 		if (bodyParts[0].getPosition() != temp) {
 
@@ -60,10 +59,8 @@ void Snake::move(sf::Vector2f direction, float currentTime)
 	}
 }
 
-void Snake::newSize(float tailIncrement)
+void Snake::newSize()
 {
-
-	
 	if (count == capacity) {
 
 		Expand();

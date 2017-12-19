@@ -55,7 +55,7 @@ GameStates Game::Update(float dt, sf::RenderWindow &Window)
 	if (snake.EatingApple(apple))
 	{
 		apple.RandomPosition();
-		snake.newSize(10);
+		snake.newSize();
 		highscore.setScore(1);
 		highscore.ToString();
 	}
@@ -63,15 +63,17 @@ GameStates Game::Update(float dt, sf::RenderWindow &Window)
 	if (snake.wallCollision() == true) {
 		highscore.ReadFromFile();
 		highscore.SaveToFile();
+		
 
-		return GameStates::GAME_OVER;
+		return GameStates::SHOW_MENU;
 	}
 	if (snake.collision() == true)
 	{
 		highscore.ReadFromFile();
 		highscore.SaveToFile();
 		
-		return GameStates::GAME_OVER;
+		
+		return GameStates::SHOW_MENU;
 	
 	}
 	

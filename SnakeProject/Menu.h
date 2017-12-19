@@ -14,6 +14,7 @@ public:
 
 	GameStates Update(float dt, sf::RenderWindow &Window);
 	void draw(sf::RenderTarget & target, sf::RenderStates State) const;
+
 	
 	
 

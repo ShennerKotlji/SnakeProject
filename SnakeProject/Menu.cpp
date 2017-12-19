@@ -1,7 +1,6 @@
 #include "Menu.h"
 
-
-Menu::Menu() //: currentWindow(sf::VideoMode(500, 500), "Hi")
+Menu::Menu()
 {
 	
 	
@@ -32,14 +31,12 @@ Menu::~Menu()
 
 GameStates Menu::Update(float dt, sf::RenderWindow &Window)
 {
-	//kan inte skicka in window i getPosition utan att skapa ett nytt fönster..
+	
 	sf::Vector2i Position = sf::Mouse::getPosition(Window);
 	
 	
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		//150 < Position.x < 300, 128 < Position.y < 150
-	
 		if (text[0].getGlobalBounds().contains(Position.x,Position.y))
 		{
 			return GameStates::START_GAME;
@@ -49,7 +46,7 @@ GameStates Menu::Update(float dt, sf::RenderWindow &Window)
 			return GameStates::SHOW_HIGHSCORE;
 		}
 		if (text[2].getGlobalBounds().contains(Position.x,Position.y)) {
-			return GameStates::GAME_OVER;
+			return GameStates::EXIT;
 		}
 	}
 
@@ -58,8 +55,10 @@ GameStates Menu::Update(float dt, sf::RenderWindow &Window)
 
 void Menu::draw(sf::RenderTarget & target, sf::RenderStates State) const
 {
+	
 	for (int i = 0; i < 3; i++) {
 
 		target.draw(text[i]);
 	}
 }
+

@@ -10,7 +10,7 @@ public:
 
 	void addScore();
 	void setScore(int points);
-	void GameOver();
+	void PrintTop10();
 	void sortAll();
 	void draw(sf::RenderTarget & target, sf::RenderStates state) const;
 	void SaveToFile();
@@ -27,6 +27,8 @@ private:
 	int count;
 	sf::Text scoreTxt;
 	sf::Font Candara;
+	sf::Text textArr[10];
+	bool showingHighscores = false;
 
 
 };
