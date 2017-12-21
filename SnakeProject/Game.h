@@ -21,6 +21,7 @@ private:
 	Highscore highscore;
 	sf::Vector2f snakeDir = { 0,0 };
 	sf::Texture texture;
+	sf::Sprite background;
 	std::string disableReverseMove;
 
 

@@ -8,19 +8,19 @@ Menu::Menu()
 
 		text[0].setCharacterSize(30);
 		text[0].setString("Start Game");
-		text[0].setPosition(150, 120);
+		text[0].setPosition(170, 120);
 		text[0].setFont(textStyle);
 		text[0].setFillColor(sf::Color::White);
 
 		text[1].setCharacterSize(30);
 		text[1].setString("View Top 10 highscores");
-		text[1].setPosition(150,250);
+		text[1].setPosition(100,250);
 		text[1].setFont(textStyle);
 		text[1].setFillColor(sf::Color::White);
 
 		text[2].setCharacterSize(30);
 		text[2].setString("Exit");
-		text[2].setPosition(150, 380);
+		text[2].setPosition(215, 380);
 		text[2].setFont(textStyle);
 		text[2].setFillColor(sf::Color::White);
 }

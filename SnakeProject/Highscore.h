@@ -9,7 +9,7 @@ public:
 	~Highscore();
 
 	void addScore();
-	void setScore(int points);
+	void setScore(int points=0);
 	void PrintTop10();
 	void sortAll();
 	void draw(sf::RenderTarget & target, sf::RenderStates state) const;
@@ -27,7 +27,7 @@ private:
 	int count;
 	sf::Text scoreTxt;
 	sf::Font Candara;
-	sf::Text textArr[10];
+	sf::Text textArr[11];
 	bool showingHighscores = false;
 
 

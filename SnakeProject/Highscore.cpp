@@ -14,9 +14,9 @@ Highscore::Highscore()
 	scoreTxt.setPosition(10, 10);
 	scoreTxt.setFont(Candara);
 	scoreTxt.setFillColor(sf::Color::White);
+	scoreTxt.setString(ToString());
 
-
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 11; i++) {
 
 		scoreArr[i] = -1;
 	}
@@ -53,8 +53,8 @@ void Highscore::addScore()
 
 void Highscore::setScore(int points)
 {
-	score = score + points;
 
+	score = score + 1;
 	scoreTxt.setString(ToString());
 }
 
@@ -71,10 +71,16 @@ void Highscore::PrintTop10()
 		score = scoreArr[i];
 		textArr[i].setCharacterSize(20);
 		textArr[i].setString("Score: " + to_string(score));
-		textArr[i].setPosition(150, 70 + count);
+		textArr[i].setPosition(200, 80 + count);
 		textArr[i].setFont(Candara);
 		textArr[i].setFillColor(sf::Color::White);
 	}
+
+	textArr[10].setCharacterSize(25);
+	textArr[10].setString("PRESS ENTER TO RETURN TO THE MENU");
+	textArr[10].setFillColor(sf::Color::Red);
+	textArr[10].setFont(Candara);
+	textArr[10].setPosition(28, 40);
 
 }
 
@@ -99,10 +105,11 @@ void Highscore::sortAll()
 
 void Highscore::draw(sf::RenderTarget & target, sf::RenderStates state) const
 {
-	if (showingHighscores == true)
-	{
-		for (int i = 0; i < 10; i++)
+	if (showingHighscores == true) {
+
+		for (int i = 0; i < 11; i++)
 		{
+
 			target.draw(textArr[i]);
 		}
 	}
@@ -111,7 +118,7 @@ void Highscore::draw(sf::RenderTarget & target, sf::RenderStates state) const
 	{
 	target.draw(scoreTxt);
 	}
-
+	
 }
 
 void Highscore::SaveToFile()
@@ -142,8 +149,7 @@ void Highscore::ReadFromFile()
 			int points;
 			fileIn >> points;
 			fileIn.ignore();
-			scoreArr[i] = points;
-			
+			scoreArr[i] = points;	
 		}
 
 	}
@@ -151,15 +157,16 @@ void Highscore::ReadFromFile()
 
 std::string Highscore::ToString() const
 {
+
 	std::stringstream ss;
-	ss << "Score: " << getScore();
+	ss << "Score: " << score;
 
 	return ss.str();
 }
 
 int Highscore::getScore() const
 {
-	return score;
+	return this->score;
 }
 
 

@@ -17,7 +17,7 @@ int main()
 	
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Shenners Snake Game!");
 	sf::Texture txt;
-	txt.loadFromFile("background1.jpg");
+	txt.loadFromFile("Green.png");
 	sf::Sprite background(txt);
 
 	sf::Clock clock;
@@ -48,7 +48,6 @@ int main()
 
 		GameStates State = Istate->Update(currentTime,window);
 		window.clear();
-		/*window.draw(background);*/
 		window.draw(*Istate);
 		window.display();
 

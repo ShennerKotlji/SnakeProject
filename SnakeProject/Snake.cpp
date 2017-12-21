@@ -69,7 +69,7 @@ void Snake::newSize()
 	bodyParts[count].setSize({ tailLength,tailWidth });
 	bodyParts[count].setFillColor(sf::Color::Blue);
 	bodyParts[count].setPosition(bodyParts[count - 1].getPosition());
-	count++;
+	count = count + 1;
 }
 
 bool Snake::collision() const

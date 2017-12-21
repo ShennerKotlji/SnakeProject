@@ -2,9 +2,9 @@
 #include <iostream>
 
 Game::Game()
-{;
-	texture.loadFromFile("background1.jpg");
-	sf::Sprite(texture);
+{
+	texture.loadFromFile("Green.png");
+	background.setTexture(texture);
 }
 
 Game::~Game()
@@ -56,7 +56,7 @@ GameStates Game::Update(float dt, sf::RenderWindow &Window)
 	{
 		apple.RandomPosition();
 		snake.newSize();
-		highscore.setScore(1);
+		highscore.setScore();
 		highscore.ToString();
 	}
 
@@ -85,6 +85,7 @@ GameStates Game::Update(float dt, sf::RenderWindow &Window)
 
 void Game::draw(sf::RenderTarget & Target, sf::RenderStates state) const
 {
+	Target.draw(background);
 	Target.draw(snake);
 	Target.draw(apple);
 	Target.draw(highscore);
