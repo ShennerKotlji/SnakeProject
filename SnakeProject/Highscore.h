@@ -22,7 +22,7 @@ public:
 
 private:
 	int scoreArr[10];
-	int score;
+	int score = 0;
 	const int TopScores = 10;
 	int count;
 	sf::Text scoreTxt;

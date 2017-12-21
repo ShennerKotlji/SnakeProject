@@ -5,9 +5,10 @@
 #include <fstream>
 
 using namespace std;
+
 Highscore::Highscore()
 {
-	this->score = 0;
+	//this->score = 0;
 	this->count = 0;
 	Candara.loadFromFile("Candara.ttf");
 	scoreTxt.setCharacterSize(30);
@@ -53,9 +54,10 @@ void Highscore::addScore()
 
 void Highscore::setScore(int points)
 {
-
-	score = score + 1;
+	
+	this->score = this->score + 1;
 	scoreTxt.setString(ToString());
+	
 }
 
 void Highscore::PrintTop10()
@@ -157,7 +159,7 @@ void Highscore::ReadFromFile()
 
 std::string Highscore::ToString() const
 {
-
+	
 	std::stringstream ss;
 	ss << "Score: " << score;
 

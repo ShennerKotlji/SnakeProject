@@ -56,8 +56,9 @@ GameStates Game::Update(float dt, sf::RenderWindow &Window)
 	{
 		apple.RandomPosition();
 		snake.newSize();
-		highscore.setScore();
 		highscore.ToString();
+		highscore.setScore();
+		//highscore.ToString();
 	}
 
 	if (snake.wallCollision() == true) {
